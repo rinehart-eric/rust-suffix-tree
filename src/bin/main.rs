@@ -21,19 +21,21 @@ fn main() {
     let elapsed = now.elapsed();
     println!("Suffix tree created in {}.{} seconds.", elapsed.as_secs(), elapsed.subsec_nanos());
 
-    let mut search = String::new();
-    print!("Enter search string: ");
-    io::stdout().flush().unwrap();
-    match io::stdin().read_line(&mut search) {
-        Err(_) => return,
-        Ok(_) => ()
-    }
+    loop {
+        let mut search = String::new();
+        print!("Enter search string: ");
+        io::stdout().flush().unwrap();
+        match io::stdin().read_line(&mut search) {
+            Err(_) => return,
+            Ok(_) => ()
+        }
 
-    print!("The full string ");
-    if tree.contains(&search.trim().to_string()) {
-        print!("contains");
-    } else {
-        print!("does not contain");
+        print!("The full string ");
+        if tree.contains(&search.trim().to_string()) {
+            print!("contains");
+        } else {
+            print!("does not contain");
+        }
+        println!(" the search string.");
     }
-    println!(" the search string.");
 }
